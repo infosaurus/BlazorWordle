@@ -1,0 +1,67 @@
+﻿@page "/wordle"
+@using BlazorWordle.Shared
+@using BlazorWordle.Domain
+@inject HttpClient Http
+
+<h3>Wordle</h3>
+
+<div class="wordle-grid">
+    @if (gameState == null) {
+        <div>Creating game...</div>
+    }
+    else {
+        @for (int i = 1; i <= 6; i++)
+        {
+            if (gameState.PastTrials.Count >= i) {
+                <WordleRow RowNumber=i Result=gameState.PastTrials.ElementAt(i-1)></WordleRow>
+            }
+            else {
+                var letters = (i == gameState.PastTrials.Count + 1 ? inputLetters : null);
+                <WordleRow RowNumber=i 
+                           Result=null
+                           LettersEntered=letters?.ToArray()>
+
+                </WordleRow>
+            }
+        }
+    }
+</div>
+<div class="submitTrial">
+    @if (inputLetters.Count == 5) {
+        <button @onclick="@(async () => await OnTrialSubmitted())">Submit</button>
+    }
+</div>
+<Keyboard OnLetterClicked=@(l => LetterEntered(l))></Keyboard>
+
+@code {
+    private GameState gameState;
+    private Guid gameId = Guid.NewGuid();
+    private EventCallback<string> OnLetterEntered { get; set; }
+
+    private IList<string> inputLetters = new List<string>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Http.PostAsJsonAsync<CreateGameCommand>("api/games", new CreateGameCommand { GameId = gameId });
+        gameState = GameState.Init(gameId);
+    }
+
+    public void LetterEntered(string letter)
+    {
+        if (inputLetters.Count < 5)
+        {
+            inputLetters.Add(letter);
+        }
+    }
+
+    public async Task OnTrialSubmitted()
+    {
+        var trial = String.Concat(inputLetters).ToLower();
+        var result = await Http.GetFromJsonAsync<TrialResult>($"api/games/{gameId}/play?trial={trial}");
+        gameState.Game = Game.Transition(gameState.Game, result);
+        foreach (var letter in result.Letters)
+            letter.Letter = Char.ToUpper(letter.Letter);
+        gameState.PastTrials.Add(result);
+        inputLetters = new List<string>();
+    }
+}

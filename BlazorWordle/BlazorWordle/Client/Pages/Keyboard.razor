@@ -1,0 +1,16 @@
+﻿<div class="keyboard">
+	@foreach (var letter in letters)
+	{
+		<span class="keyboard-letter" @onclick="@(() => OnLetterClicked.InvokeAsync(letter.ToUpper()))">
+			@letter.ToUpper()
+		</span>
+	}
+</div>
+
+@code {
+	private string[] letters = new string[] {
+		"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
+	};
+
+	[Parameter] public EventCallback<string> OnLetterClicked { get; set; }
+}

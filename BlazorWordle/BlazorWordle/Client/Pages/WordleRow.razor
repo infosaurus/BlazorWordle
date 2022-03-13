@@ -1,0 +1,41 @@
+﻿@using BlazorWordle.Domain
+
+	@if (@Result == null)
+	{
+		@for (int i = 1; i <= 5; i++)
+		{
+			<div class="letter blank-letter" style="grid-row: @RowNumber; grid-column: @i">
+				@if (LettersEntered == null || LettersEntered.Count() < i || string.IsNullOrEmpty(LettersEntered[i-1])) {
+					@(" ")
+				}
+				else {
+					@(LettersEntered[i-1])
+				}
+			</div>
+		}
+	}
+	else {
+		for (int i = 1; i <= @Result.Letters.Length; i++){
+			var class1 = @Result.Letters[i - 1].Result switch
+			{
+				ResultValue.Hit => "hit-letter",
+				ResultValue.Miss => "miss-letter",
+				ResultValue.Position => "position-letter",
+				_ => ""
+			};
+			
+			<div class="letter @class1" 
+				 style="grid-row: @RowNumber; grid-column: @i">
+				 @Result.Letters[i - 1].Letter.ToString()
+			</div>
+		}
+	}
+
+@code {
+    [Parameter]
+    public TrialResult Result { get; set; }
+    [Parameter]
+    public int RowNumber { get; set; }
+	[Parameter]
+	public string[] LettersEntered { get; set; }
+}

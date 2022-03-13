@@ -1,0 +1,20 @@
+﻿.letter {
+    line-height: 50px;
+    vertical-align: middle;
+}
+
+.hit-letter {
+    background-color: green;
+}
+
+.miss-letter {
+    background-color: red;
+}
+
+.position-letter {
+    background-color: darkorange;
+}
+
+.blank-letter {
+    background-color: black;
+}
