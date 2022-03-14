@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32126.317
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWordle.Server", "BlazorWordle\Server\BlazorWordle.Server.csproj", "{1F4FF3F8-D911-49BF-AE7A-EC00E24A28C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWordle.Server", "BlazorWordle\BlazorWordle\Server\BlazorWordle.Server.csproj", "{1F4FF3F8-D911-49BF-AE7A-EC00E24A28C2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWordle.Client", "BlazorWordle\Client\BlazorWordle.Client.csproj", "{B806A242-756B-4118-A889-B1311FDE4ED7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWordle.Client", "BlazorWordle\BlazorWordle\Client\BlazorWordle.Client.csproj", "{B806A242-756B-4118-A889-B1311FDE4ED7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWordle.Shared", "BlazorWordle\Shared\BlazorWordle.Shared.csproj", "{2D3D3041-BC44-4686-AAF4-D0DE878CD086}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWordle.Shared", "BlazorWordle\BlazorWordle\Shared\BlazorWordle.Shared.csproj", "{2D3D3041-BC44-4686-AAF4-D0DE878CD086}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWordle.Domain", "..\BlazorWordle.Domain\BlazorWordle.Domain.csproj", "{8276C967-14E0-4E08-8BBB-7F54E1D5AD47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWordle.Domain", "BlazorWordle.Domain\BlazorWordle.Domain.csproj", "{8276C967-14E0-4E08-8BBB-7F54E1D5AD47}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWordle.Tests", "..\BlazorWordle.Tests\BlazorWordle.Tests.csproj", "{76B5B4D4-FDBA-46E8-B915-2D8E23CC65E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWordle.Tests", "BlazorWordle.Tests\BlazorWordle.Tests.csproj", "{76B5B4D4-FDBA-46E8-B915-2D8E23CC65E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
